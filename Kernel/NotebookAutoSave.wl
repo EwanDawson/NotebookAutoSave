@@ -71,3 +71,11 @@ End[];
 
 
 EndPackage[]; 
+
+
+(* Since this Paclet is set to load at startup, this file will be evaluted when the Kernel is initialized.
+   This lets us install the auto-save scheduled task at startup. However, since it relies on symbols that
+   are part of the FrontEnd, we must delay initialization until the FrontEnd session is initialized.
+   Simply evaluating InstallNotebookAutoSaveScheduledTask[] will fail (and in fact block the Kernel initialization
+   process, preventing Wolfram Desktop from being able to start.) *)
+InitializationValue[$Initialization,"FrontEndSession"] = Hold[InstallNotebookAutoSaveScheduledTask[]];

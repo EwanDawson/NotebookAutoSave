@@ -1,8 +1,11 @@
+(* ::Package:: *)
+
 PacletObject[
     <|
         "Name" -> "NotebookAutoSave",
-        "Version" -> "0.0.1",
+        "Version" -> "0.0.2",
         "WolframVersion" -> "13.+",
+        "Loading" -> "Startup",
         "Extensions" ->
             {
                 {
