@@ -21,27 +21,33 @@ Begin["`Private`"];
 $NotebookAutoSaveOnSchedule = True;
 
 
-InputCellSelectedQ[nb_NotebookObject] := Length@Cells[NotebookSelection@InputNotebook[],CellStyle->{"Input"}] == 1;
+InputCellSelectedQ[nb_NotebookObject] := Length@Cells[NotebookSelection[nb],CellStyle->{"Input"}] == 1;
+
+
+SystemNotebookQ[nb_NotebookObject] :=
+    Enclose[StringStartsQ[Confirm[Quiet[NotebookFileName[nb]]], $InstallationDirectory
+        ], False&];
 
 
 NotebookHasFileQ[nb_NotebookObject] :=
-    Quiet[Check[!FailureQ[NotebookFileName[SelectedNotebook[]]], False
-        ]]; 
+    Quiet[Check[!FailureQ[NotebookFileName[nb]], False]];
 
 
 NotebookModifiedQ[nb_NotebookObject] :=
     Lookup[Association @@ NotebookInformation[nb], "ModifiedInMemory"
-        ]; 
+        ];
 
 
 SaveSelectedNotebook[] :=
     With[{nb = SelectedNotebook[], inb = InputNotebook[]},
         Module[{saved = False},
-            If[nb == inb && NotebookModifiedQ[nb] && NotebookHasFileQ[nb] && !InputCellSelectedQ[nb],
+            If[nb == inb && !SystemNotebookQ[nb] && NotebookModifiedQ[
+                nb] && NotebookHasFileQ[nb] && !InputCellSelectedQ[nb],
                 (FrontEndTokenExecute["Save"]; saved = True)
-            ]; saved
+            ];
+            saved
         ]
-    ]; 
+    ];
 
 
 InstallNotebookAutoSaveScheduledTask[] :=

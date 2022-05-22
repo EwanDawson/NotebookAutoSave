@@ -3,7 +3,7 @@
 PacletObject[
     <|
         "Name" -> "NotebookAutoSave",
-        "Version" -> "0.0.2",
+        "Version" -> "1.0.5",
         "WolframVersion" -> "13.+",
         "Loading" -> "Startup",
         "Extensions" ->
