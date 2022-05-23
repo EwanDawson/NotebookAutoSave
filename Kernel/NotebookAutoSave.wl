@@ -1,6 +1,6 @@
 (* ::Package:: *)
 
-BeginPackage["NotebookAutoSave`"]; 
+BeginPackage["EwanDawson`NotebookAutoSave`"]; 
 
 
 $NotebookAutoSaveOnSchedule::usage = "When this is set to False, auto save is suspended."; 
@@ -12,7 +12,7 @@ $NotebookAutoSaveScheduledTask::usage = "The schedule task used to perform autos
 InstallNotebookAutoSaveScheduledTask::usage = "Call this function to create and start the auto save task for the current session. Calling this more that once has no effect."
 
 
-RemoveNotebookAutoSaveScheduledTask::usage "Call this function to stop and remove the auto save task for the current session. Calling this more than once has no effect."
+RemoveNotebookAutoSaveScheduledTask::usage = "Call this function to stop and remove the auto save task for the current session. Calling this more than once has no effect."
 
 
 Begin["`Private`"]; 
