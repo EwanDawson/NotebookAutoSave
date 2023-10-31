@@ -115,4 +115,4 @@ EndPackage[];
    are part of the FrontEnd, we must delay initialization until the FrontEnd session is initialized.
    Simply evaluating InstallNotebookAutoSaveScheduledTask[] will fail (and in fact block the Kernel initialization
    process, preventing Wolfram Desktop from being able to start.) *)
-InitializationValue[$Initialization,"FrontEndSession"] = Hold[InstallNotebookAutoSaveScheduledTask[]];
+InitializationValue[$Initialization,"FrontEndSession"] = Hold[Symbol["EwanDawson`NotebookAutoSave`InstallNotebookAutoSaveScheduledTask"][]];
